@@ -14,11 +14,11 @@ Ejemplos de como usar las herramientas que `redlistr` provee estan descritas en 
 
 Aqui proveemos un ejemplo de los using In this vignette, we provide an example of using the tools within `redlistr` to 
 assess the spatial criteria of the [IUCN Red List of 
-Ecosystems](http://iucnrle.org/). These criteria assess the change in the extent
-of an ecosystem over time (Criterion A) and properties of the geographic 
-distribution size (Criterion B). Both of these criteria require the use of maps
-of ecosystem distributions.
+Ecosystems](http://iucnrle.org/). 
 
+estos criterios evaluan el cambio en extension de un ecosistema en tiempo (Criterio A) ademas de evaluar las propiedades geograpficas del tamaño de la distribucion (Criterio B). Ambos criterios requieren de mapas de la distribucion del ecosistema en dos tiempos.
+
+Primero cargaremos las librerias necesarias para la evaluacion. 
 We begin by loading the packages we need for the assessment. Please ensure
 that these are already installed.
 ```{r Loading packages, message=FALSE}
@@ -26,18 +26,18 @@ library(rgeos)
 library(redlistr)
 ```
 
-## 2. Importing data
-We first import the spatial data we want to analyse. In this vignette, we 
-will be using two example distributions included with the package. They are 
-mangrove distributions from the northern regions of Western Port Bay, Victoria,
-Australia. The first distribution is from Giri et al., 
-([2011](http://onlinelibrary.wiley.com/doi/10.1111/j.1466-8238.2010.00584.x/abstract)),
-and represents mangrove distribution in 2000. The second distribution is a 
-classification map generated using the `XGBoost` package and data from Landsat 
-8, and represents mangrove distribution in 2017. Both of these geographic
-distributions are stored as rasters, and a raster value of 1 denotes presence.
+## 2. Importando  datos
+Primero es necesario importar todos los datos espaciales que deseamos analizar. En este 
+ejemplo usaremos la distribucion de manglares de la region Norte de Western Port Bay, Victoria,
+Australia. Los datos vienen incluidos en la libreria. La primera distribicion es de Giri et al., 
+([2011](http://onlinelibrary.wiley.com/doi/10.1111/j.1466-8238.2010.00584.x/abstract)), y representa 
+la distribucion de manglares en el 2000. La segunda distribucion es una clasificacion de manglar
+generada usando la libreria `XGBoost` y datos de Landsat 8. Esta clasificacion representa 
+la distribucion de manglar en 2017. Ambas distribuciones geograficas estan almacenadas como rasters,
+la presencia del ecosistema esta representada con un valor de 1.
 
-```{r Loading our example distributions}
+
+```{r importar datos de distribucion}
 mangrove.2000 <- raster(system.file("extdata", "example_distribution_2000.tif", 
                                     package = "redlistr"))
 mangrove.2017 <- raster(system.file("extdata", "example_distribution_2017.tif", 
